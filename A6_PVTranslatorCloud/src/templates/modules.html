@@ -20,14 +20,17 @@
 	                   rowClasses="text-center" id="tabla">
 	                   
 	            		<tr>
+	            			<th> <!--boton ver campañas--> <th>
 					    <th>Nombre</th>
 					    <th>Alpha</th> 
 					    <th>Beta</th>
 					    <th>Gamma</th>
 					    <th>Kappa</th>
+					    <th> <!--Botones editar y eliminar--> <th>
 		  			</tr>
 		  			{% for module in modules %}
 		  			<tr>
+		  				 <td> <a type="link" class="text-secundary" value="Campañas" href="/campanya/{{ module.key.id() }}"/></a>  <td>
 				  		 <td>{{ module.name }}</td>
 				  		 <td>{{ module.alpha }}</td>
 				  	     <td>{{ module.beta }}</td>
