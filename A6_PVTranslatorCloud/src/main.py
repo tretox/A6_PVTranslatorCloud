@@ -4,7 +4,7 @@ Created on Dec 6, 2018
 @author: Carlos
 '''
 
-from views import ShowModules, NewModule, showCalendar
+from viewsModule import ShowModules, NewModule, showCalendar
 import webapp2  
 
 app = webapp2.WSGIApplication([
