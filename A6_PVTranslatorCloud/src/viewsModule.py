@@ -35,7 +35,7 @@ class NewModule(BaseHandler):
         else:
             id = int(mod_id)
             modulo = db.get(db.Key.from_path('Modules', id))
-            self.render_template('newModule.html', {"modulo", modulo})
+            self.render_template('newModule.html', {"modulo": modulo})
         
         
     def post(self, mod_id):
@@ -50,7 +50,7 @@ class NewModule(BaseHandler):
             id = int(mod_id)
             module = db.get(db.Key.from_path('Modules', id))
             module.name = self.request.get('inputName')
-            module.alpha = self.request.get('inputAlpha')
+            module.alpha = int(self.request.get('inputAlpha'))
             module.beta = int(self.request.get('inputBeta'))
             module.gamma = int(self.request.get('inputGamma'))
             module.kappa = int(self.request.get('inputKappa'))

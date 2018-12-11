@@ -26,20 +26,35 @@
 					    <th>Beta</th>
 					    <th>Gamma</th>
 					    <th>Kappa</th>
-					    <th> <!--Botones editar y eliminar--> <th>
+					    	<th> <!--Botones editar y eliminar--> <th>
 		  			</tr>
+		  			
 		  			{% for module in modules %}
 		  			<tr>
-		  				 <td> <a type="link" class="text-secundary" value="Campañas" href="/campanya/{{ module.key.id() }}"/></a>  <td>
+		  				 <td> <a type="link" class="text-secundary" href="/"> Campañas </a>  <td>
 				  		 <td>{{ module.name }}</td>
 				  		 <td>{{ module.alpha }}</td>
 				  	     <td>{{ module.beta }}</td>
 				  	     <td>{{ module.kappa }}</td>
 				  	     <td>{{ module.gamma }}</td>
+				  	     <td> 
+                          	<a type="link" "btn btn-secondary rounded" href="/newModule/{{ module.key().id() }}">
+                             	<span class="material-icons align-middle">edit</span>
+                                 <span class="d-none d-md-inline">Editar</span>
+                            </a>
+                            <!--  
+                            <a type="link" "btn btn-danger rounded" href="/">
+                            		<span class="material-icons align-middle">remove</span>
+                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
+                            </a>
+                            -->
+				  	     </td>
 		  			</tr>
 		  		   {% endfor %}
+		  		   
 	             </table>
 			</div>
+			
 			<p>
 				<a type="link" class="btn btn-primary rounded" href="/newModule/">
 	             	<span class="material-icons align-middle"> add </span>
@@ -51,9 +66,6 @@
                 </a>
              </p>
 		</form>
-		
-		
-			
 		
 		
 	</div>                        
