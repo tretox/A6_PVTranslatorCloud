@@ -26,16 +26,25 @@ class showCalendar(BaseHandler):
         self.render_template('calendar.html', {})
         
         
+class DeleteModulo(BaseHandler):
+    
+    def get(self, mod_id):
+        id = int(mod_id)
+        modulo = db.get(db.Key.from_path('Modules', id))
+        db.delete(modulo)
+        time.sleep(0.1)
+        return webapp2.redirect('/')
         
-class NewModule(BaseHandler):
+        
+class NewEditModule(BaseHandler):
 
     def get(self, mod_id):
         if not mod_id:
-            self.render_template('newModule.html', {})
+            self.render_template('newEditModule.html', {})
         else:
             id = int(mod_id)
             modulo = db.get(db.Key.from_path('Modules', id))
-            self.render_template('newModule.html', {"modulo": modulo})
+            self.render_template('newEditModule.html', {"modulo": modulo})
         
         
     def post(self, mod_id):

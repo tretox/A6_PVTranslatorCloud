@@ -20,13 +20,13 @@
 	                   rowClasses="text-center" id="tabla">
 	                   
 	            		<tr>
-	            			<th> <!--boton ver campañas--> <th>
-					    <th>Nombre</th>
-					    <th>Alpha</th> 
-					    <th>Beta</th>
-					    <th>Gamma</th>
-					    <th>Kappa</th>
-					    	<th> <!--Botones editar y eliminar--> <th>
+	            			<th headerClass="d-none d-md-table-cell"> <!--boton ver campañas--> <th>
+					    <th headerClass="d-none d-md-table-cell">Nombre</th>
+					    <th headerClass="d-none d-md-table-cell">Alpha</th> 
+					    <th headerClass="d-none d-md-table-cell">Beta</th>
+					    <th headerClass="d-none d-md-table-cell">Gamma</th>
+					    <th headerClass="d-none d-md-table-cell">Kappa</th>
+					    	<th headerClass="d-none d-md-table-cell"> <!--Boton editar y eliminar--> <th>
 		  			</tr>
 		  			
 		  			{% for module in modules %}
@@ -38,16 +38,15 @@
 				  	     <td>{{ module.kappa }}</td>
 				  	     <td>{{ module.gamma }}</td>
 				  	     <td> 
-                          	<a type="link" "btn btn-secondary rounded" href="/newModule/{{ module.key().id() }}">
+                          	<a type="link" "btn btn-secondary rounded" href="/newEditModule/{{ module.key().id() }}">
                              	<span class="material-icons align-middle">edit</span>
                                  <span class="d-none d-md-inline">Editar</span>
                             </a>
-                            <!--  
-                            <a type="link" "btn btn-danger rounded" href="/">
+                            <a type="link" "btn btn-danger rounded" href="/deleteModulo/{{ module.key().id() }}">
                             		<span class="material-icons align-middle">remove</span>
                             		<span class="d-none d-md-inline-block align-middle">Borrar</span>
                             </a>
-                            -->
+                            
 				  	     </td>
 		  			</tr>
 		  		   {% endfor %}
@@ -56,7 +55,7 @@
 			</div>
 			
 			<p>
-				<a type="link" class="btn btn-primary rounded" href="/newModule/">
+				<a type="link" class="btn btn-primary rounded" href="/newEditModule/">
 	             	<span class="material-icons align-middle"> add </span>
 	                 <span class="d-none d-md-inline-block align-middle">Nuevo</span>
 	            </a>
