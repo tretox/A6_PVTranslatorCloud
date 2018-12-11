@@ -1,0 +1,60 @@
+/*
+    Created on : 10-nov-2018, 14:26:49
+    Author     : vikour
+    Imported font from google:
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+*/
+
+
+h1,h2,h3,h4,h5,h6,th {
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+a, button {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+p,td, input {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+body {
+    background-color: #E5E8E8;
+}
+
+tr th:last-child, tr td:last-child {
+    width: 200px;
+}
+
+#main-content {
+    background-color: #fff;
+}
+
+a {
+    font-weight: bold;
+}
+
+.alert {
+    list-style: none !important;
+}
+
+.no-more-than-60p {
+    max-height: 60%;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    text-align: center;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="container p-4">
+		<h2>Módulos</h2>
+	</div>
+	
+	<div class="container pb-3">
+		<form>
+			<div class="table-responsive no-more-than-60p">
+				<table class="table" 
+					   columnClasses="align-middle,
+	                                  align-middle,
+	                                  align-middle 
+	                                  d-none d-md-table-cell,
+	                                  align-middle d-none d-md-table-cell,
+	                                  align-middle  d-none d-md-table-cell,
+	                                  align-middle d-none d-md-table-cell"
+	                   headerClass="text-center"
+	                   rowClasses="text-center" id="tabla">
+	                   
+	            		<tr>
+					    <th>Nombre</th>
+					    <th>Alpha</th> 
+					    <th>Beta</th>
+					    <th>Gamma</th>
+					    <th>Kappa</th>
+		  			</tr>
+		  			{% for module in modules %}
+		  			<tr>
+				  		 <td>{{ module.name }}</td>
+				  		 <td>{{ module.alpha }}</td>
+				  	     <td>{{ module.beta }}</td>
+				  	     <td>{{ module.kappa }}</td>
+				  	     <td>{{ module.gamma }}</td>
+		  			</tr>
+		  		   {% endfor %}
+	             </table>
+			</div>
+			<p>
+				<a type="link" class="btn btn-primary rounded" href="/newModule/">
+	             	<span class="material-icons align-middle"> add </span>
+	                 <span class="d-none d-md-inline-block align-middle">Nuevo</span>
+	            </a>
+	            <a type="link" class="btn btn-primary rounded" href="/calendar">
+                 	<span class="material-icons align-middle">calendar_today</span>
+                     <span class="d-none d-md-inline-block align-middle">Calendario</span>
+                </a>
+             </p>
+		</form>
+		
+		
+			
+		
+		
+	</div>                        
+
+{% endblock content %}

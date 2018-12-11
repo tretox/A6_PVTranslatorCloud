@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="container p-4">
+		{% if not modulo%}
+		<h2>Crear módulo</h2>
+        {% else %}
+        <h2>Editar módulo</h2>
+        {% endif %}
+	</div>
+		
+	<div class="container pb-3">
+	
+		<div class="container">
+         	<div class="row">
+             	<div class="col-sm-2 ">
+                 </div>
+                  <div class="col-sm-8 ">
+                  
+                   	<form role="form" action="" method="post">
+                   	
+                     	<div class="form-group row">
+                        		<label for="inputName" class="col-sm-3 col-form-label"> Nombre </label>
+                        		{% if not modulo%}
+                        		<input class="form-control col-sm-9"  type="text" name="inputName" id="inputName" placeholder="nombre" required/>
+                        		{% else %}
+                        		<input class="form-control col-sm-9"  type="text" name="inputName" id="inputName" placeholder="nombre" required value="{{ modulo.name }}"/>                        		
+                        		{% endif %}
+                         </div>
+                                
+                         <div class="form-group row">
+                         	<label for="inputAlpha" class="col-sm-3 col-form-label">Alpha</label>
+                        		{% if not modulo%}
+                         	<input class="form-control col-sm-9" type="number" name="inputAlpha" id="inputAlpha" placeholder="alpha" required/>
+                        		{% else %}
+                         	<input class="form-control col-sm-9" type="number" name="inputAlpha" id="inputAlpha" placeholder="alpha" required value="{{ modulo.alpha }}"/>
+                        		{% endif %}
+                         </div>
+                                
+                         <div class="form-group row">
+                         	<label for="inputBeta" class="col-sm-3 col-form-label">Beta</label>
+                         	{% if not modulo%}
+                         	<input class="form-control col-sm-9" type="number" name="inputBeta" id="inputBeta" placeholder="beta" required/>
+                         	{% else %}
+                         	<input class="form-control col-sm-9" type="number" name="inputBeta" id="inputBeta" placeholder="beta" required value="{{ modulo.beta }}"/>
+                        		{% endif %}
+                         </div>
+                                
+                         <div class="form-group row">
+                           	<label for="inputGamma" class="col-sm-3 col-form-label">Gamma</label>
+                           	{% if not modulo%}
+                           	<input class="form-control col-sm-9" type="number" name="inputGamma" id="inputGamma" placeholder="gamma" required/>
+                         	{% else %}
+                           	<input class="form-control col-sm-9" type="number" name="inputGamma" id="inputGamma" placeholder="gamma" required value="{{ module.gamma }}"/>
+                        		{% endif %}
+                         </div>
+                                
+                         <div class="form-group row">
+                          	<label for="inputKappa" class="col-sm-3 col-form-label">Kappa</label>
+                          	{% if not modulo%}
+                          	<input class="form-control col-sm-9" type="number" name="inputKappa" id="inputKappa" placeholder="kappa" required/>
+                             {% else %}
+                          	<input class="form-control col-sm-9" type="number" name="inputKappa" id="inputKappa" placeholder="kappa" required value="{{ module.kappa }}"/>
+                        		{% endif %}      
+                         </div>
+                         
+                         
+                         <a type="link" class="btn btn-secondary" href="/">Atras</a>
+                         <button class="btn btn-primary" type="submit" value="submit">Crear</button>
+
+                 	</form>
+                 	
+                 	
+                 </div>
+                 
+                 <div class="col-sm-2 ">
+            		</div>
+            		
+        		</div>
+     	</div>
+	
+	</div>
+
+{% endblock content %}
