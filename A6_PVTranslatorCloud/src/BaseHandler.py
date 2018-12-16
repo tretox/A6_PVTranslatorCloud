@@ -19,3 +19,4 @@ class BaseHandler(webapp2.RequestHandler):
     def render_template(self, filename, template_values, **template_args):
         template = jinja_environment.get_template(filename)
         self.response.out.write(template.render(template_values))
+       

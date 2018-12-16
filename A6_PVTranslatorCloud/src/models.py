@@ -13,13 +13,13 @@ class Modules(db.Model):
     gamma = db.IntegerProperty()
     kappa = db.IntegerProperty()
 
-"""
-class Campanyas(db.model):
+
+class Campanyas(db.Model):
     name = db.StringProperty()
-    modulo = db.StringProperty()
+    modulo = db.IntegerProperty()
     date = db.DateTimeProperty(auto_now_add=True)
     
-    
+"""    
 class Coments(db.model):
     text = db.StringProperty()
     date = db.DateTimeProperty(auto_now_add=True)
