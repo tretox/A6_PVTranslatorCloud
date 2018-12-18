@@ -6,53 +6,47 @@
 	</div>
 	
 	<div class="container pb-3">
-		<form>
-			<div class="table-responsive no-more-than-60p">
-				<table class="table" 
-					   columnClasses="align-middle,
-	                                  align-middle,
-	                                  align-middle 
-	                                  d-none d-md-table-cell,
-	                                  align-middle d-none d-md-table-cell,
-	                                  align-middle  d-none d-md-table-cell,
-	                                  align-middle d-none d-md-table-cell"
-	                   headerClass="text-center"
-	                   rowClasses="text-center" id="tabla">
-	                   
-	            		<tr>
-	            			<th headerClass="d-none d-md-table-cell"> <!--boton ver campañas--> <th>
-					    <th headerClass="d-none d-md-table-cell">Nombre</th>
-					    <th headerClass="d-none d-md-table-cell">Alpha</th> 
-					    <th headerClass="d-none d-md-table-cell">Beta</th>
-					    <th headerClass="d-none d-md-table-cell">Gamma</th>
-					    <th headerClass="d-none d-md-table-cell">Kappa</th>
-					    	<th headerClass="d-none d-md-table-cell"> <!--Boton editar y eliminar--> <th>
-		  			</tr>
-		  			
+			
+				
+				<table class="table" id="tabla">
+	                  
+	                  <thead> 
+		            		<tr>
+		            			<th style="width: 10%" class="text-center align-middle"> <!--boton ver campañas--> <th>
+						    <th style="width: 26.5%" class="text-center align-middle">Nombre</th>
+						    <th style="width: 10%" class="text-center align-middle d-none d-md-table-cell">Alpha</th> 
+						    <th style="width: 10%" class="text-center align-middle d-none d-md-table-cell">Beta</th>
+						    <th style="width: 10%" class="text-center align-middle d-none d-md-table-cell">Gamma</th>
+						    <th style="width: 10%" class="text-center align-middle d-none d-md-table-cell">Kappa</th>
+						    	<th style="width: 20%" class="text-center align-middle"> <!--Boton editar--> <th>
+			  			</tr>
+		  			</thead>
+		  			<tbody>
 		  			{% for module in modules %}
-		  			<tr>
-		  				 <td> <a type="link" class="text-secundary" href="/"> Campañas </a>  <td>
-				  		 <td>{{ module.name }}</td>
-				  		 <td>{{ module.alpha }}</td>
-				  	     <td>{{ module.beta }}</td>
-				  	     <td>{{ module.kappa }}</td>
-				  	     <td>{{ module.gamma }}</td>
-				  	     <td> 
-                          	<a type="link" "btn btn-secondary rounded" href="/newEditModule/{{ module.key().id() }}">
-                             	<span class="material-icons align-middle">edit</span>
-                                 <span class="d-none d-md-inline">Editar</span>
-                            </a>
-                            <a type="link" "btn btn-danger rounded" href="/deleteModulo/{{ module.key().id() }}">
-                            		<span class="material-icons align-middle">remove</span>
-                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
-                            </a>
-                            
-				  	     </td>
-		  			</tr>
+			  			<tr>
+			  				 <td class="text-center align-middle"> <a type="link" class="text-secundary" href="/"> Campañas </a>  <td>
+					  		 <td class="text-center align-middle">{{ module.name }}</td>
+					  		 <td class="text-center align-middle d-none d-md-table-cell">{{ module.alpha }}</td>
+					  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.beta }}</td>
+					  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.kappa }}</td>
+					  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.gamma }}</td>
+					  	     <td class="text-center align-middle"> 
+	                          	<a type="button" class="btn btn-secondary rounded" href="/newEditModule/{{ module.key().id() }}">
+	                             	<span class="material-icons align-middle">edit</span>
+	                                 <span class="d-none d-md-inline">Editar</span>
+	                            </a>
+	                            <a type="button" class="btn btn-danger rounded" href="/deleteModulo/{{ module.key().id() }}">
+	                            		<span class="material-icons align-middle">remove</span>
+	                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
+	                            </a>
+	                         </td>
+	                            
+					  	     
+			  			</tr>
 		  		   {% endfor %}
+		  		   </tbody>
 		  		   
 	             </table>
-			</div>
 			
 			<p>
 				<a type="link" class="btn btn-primary rounded" href="/newEditModule/">
@@ -64,7 +58,6 @@
                      <span class="d-none d-md-inline-block align-middle">Calendario</span>
                 </a>
              </p>
-		</form>
 		
 		
 	</div>                        
