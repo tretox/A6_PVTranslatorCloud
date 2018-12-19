@@ -12,7 +12,6 @@ from google.appengine.ext import db
 
 from models import Campanyas
 from datetime import datetime
-from google.appengine.datastore.datastore_v4_pb import GqlQuery
 
 class ShowCampanyas(BaseHandler):
     
@@ -29,7 +28,7 @@ class DeleteCampanya(BaseHandler):
     def get(self,id_campanya,id_modulo):
        
         idCampanya = int(id_campanya)
-        #idModulo= int(id_modulo)
+        
         campanya = db.get(db.Key.from_path('Campanyas', idCampanya))
         db.delete(campanya)
         time.sleep(0.1)
