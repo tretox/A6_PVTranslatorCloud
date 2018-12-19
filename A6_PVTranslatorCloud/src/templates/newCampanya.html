@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="container p-4">
+		{% if not campanya%}	
+		<h2>Crear nueva campanya</h2>
+        {% else %}
+        <h2>Editar campanya</h2>	
+        {% endif %}
+	</div>
+		
+	<div class="container pb-3">
+	
+		<div class="container">
+         	<div class="row">
+             	<div class="col-sm-2 ">
+                 </div>
+                  <div class="col-sm-8 ">
+                  
+                   	<form role="form" action="" method="post">
+                   	
+                     	<div class="form-group row">
+                        		<label for="inputName" class="col-sm-3 col-form-label"> Nombre </label>
+                        		{% if not campanya %}
+                        		<input class="form-control col-sm-9"  type="text" name="inputName" id="inputName" placeholder="nombre" required/>
+                        		{% else %}
+                        		<input class="form-control col-sm-9"  type="text" name="inputName" id="inputName" placeholder="nombre" required value="{{ campanya.name }}"/>                        		
+                        		{% endif %}
+                         </div>
+                         
+                         <a type="link" class="btn btn-secondary" href="/">Atras</a>
+                         <button class="btn btn-primary" type="submit" value="submit">Crear</button>
+
+                 	</form>
+                 	
+                 	
+                 </div>
+                 
+                 <div class="col-sm-2 ">
+            		</div>
+            		
+        		</div>
+     	</div>
+	
+	</div>
+
+{% endblock content %}

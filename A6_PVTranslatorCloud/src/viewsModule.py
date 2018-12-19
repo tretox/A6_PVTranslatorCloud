@@ -30,6 +30,7 @@ class showCalendar(BaseHandler):
 class NewModule(BaseHandler):
 
     def get(self, mod_id):
+        #self.session['id']= 'hola'
         if not mod_id:
             self.render_template('newModule.html', {})
         else:
@@ -39,6 +40,8 @@ class NewModule(BaseHandler):
         
         
     def post(self, mod_id):
+        #hola= self.session.get('id')
+        
         module = None
         if not mod_id:
             module = Modules(name=self.request.get('inputName'),

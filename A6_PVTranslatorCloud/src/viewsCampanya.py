@@ -10,10 +10,35 @@ import time
 from BaseHandler import BaseHandler
 from google.appengine.ext import db
 
-from models import Campanyas 
+from models import Campanyas
 from datetime import datetime
+from google.appengine.datastore.datastore_v4_pb import GqlQuery
 
+class ShowCampanyas(BaseHandler):
+    
+    def get(self, id_modulo):
+        
 
+        campanyas=Campanyas.all().filter('modulo', int(id_modulo))
+       
+        self.render_template('campanya.html', {"campanyas" : campanyas,"id_modulo" : id_modulo})
+
+        
+class DeleteCampanya(BaseHandler):
+    
+    def get(self,id_campanya,id_modulo):
+       
+        idCampanya = int(id_campanya)
+        #idModulo= int(id_modulo)
+        campanya = db.get(db.Key.from_path('Campanyas', idCampanya))
+        db.delete(campanya)
+        time.sleep(0.1)
+       
+        return webapp2.redirect('/campanyas/'+id_modulo)
+       
+        
+        
+    
 class NewCampaign(BaseHandler):
 
     def get(self, camp_id):

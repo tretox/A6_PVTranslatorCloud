@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="container p-4">
+		<h2>Campa&ntilde;as</h2>
+	</div>
+	
+	<div class="container pb-3">
+		<form>
+			<div class="table-responsive no-more-than-60p">
+				<table class="table" 
+					   columnClasses="align-middle,
+	                                  align-middle,
+	                                  align-middle 
+	                                  d-none d-md-table-cell,
+	                                  align-middle d-none d-md-table-cell,
+	                                  align-middle  d-none d-md-table-cell,
+	                                  align-middle d-none d-md-table-cell"
+	                   headerClass="text-center"
+	                   rowClasses="text-center" id="tabla">
+	                   
+	            		<tr>
+					    <th>Nombre</th>
+					    <th>Modulo</th> 
+					    <th>Fecha</th>
+					    <th>Editar</th>
+					    <th>Borrar</th>
+		  			</tr>
+		  			{% for campanya in campanyas %}
+		  			<tr>
+				  		 <td>{{ campanya.name }}</td>
+				  		 <td>{{ campanya.modulo }}</td>
+				  	     <td>{{ campanya.fecha }}</td>
+				  	     <td><a type="button" class="btn btn-secondary rounded" href="/newCampaign/{{ campanya.key().id() }}">
+	                             	<span class="material-icons align-middle">edit</span>
+	                                 <span class="d-none d-md-inline">Editar</span>
+	                            </a></td>
+	                     <td>
+	                     	 <a type="button" class="btn btn-danger rounded" href="/deleteCampanya/{{ campanya.key().id() }};{{campanya.modulo}}">
+	                            		<span class="material-icons align-middle">remove</span>
+	                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
+	                            </a>
+	                     
+	                     </td>
+				  	     
+		  			</tr>
+		  		   {% endfor %}
+	             </table>
+			</div>
+			<p>
+				<a type="link" class="btn btn-primary rounded" href="/newCampaign/{{id_modulo}}">
+	             	<span class="material-icons align-middle"> add </span>
+	                 <span class="d-none d-md-inline-block align-middle">Nuevo</span>
+	            </a>
+	            <a type="link" class="btn btn-primary rounded" href="/calendar">
+                 	<span class="material-icons align-middle">calendar_today</span>
+                     <span class="d-none d-md-inline-block align-middle">Calendario</span>
+                </a>
+             </p>
+		</form>
+		
+		
+			
+		
+		
+	</div>                        
+
+{% endblock content %}
