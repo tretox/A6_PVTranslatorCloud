@@ -6,17 +6,20 @@ Created on Dec 6, 2018
 
 
 from viewsCampanya import NewCampaign, ShowCampanyas, DeleteCampanya
-from viewsModule import ShowModules, NewEditModule, showCalendar, DeleteModulo
+from viewsModule import ShowModules, NewModule, EditModule, showCalendar, DeleteModulo
 
 import webapp2  
 
 app = webapp2.WSGIApplication([
         ('/', ShowModules), 
-        ('/newEditModule/([\d]*)', NewEditModule), 
+        ('/module/new', NewModule), 
+        ('/module/edit/([\d]+)', EditModule), 
+        ('/module/delete/([\d]+)', DeleteModulo),
+        
         ('/calendar', showCalendar),
+        
         ('/newCampaign/([\d]*)', NewCampaign),
         ('/campanyas/([\d]+)', ShowCampanyas),
         ('/deleteCampanya/(\d+);(\d+)', DeleteCampanya),
-        ('/deleteModulo/([\d]+)', DeleteModulo),
         ],
         debug=True)

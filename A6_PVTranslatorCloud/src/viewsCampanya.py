@@ -16,10 +16,7 @@ from datetime import datetime
 class ShowCampanyas(BaseHandler):
     
     def get(self, id_modulo):
-        
-
         campanyas=Campanyas.all().filter('modulo', int(id_modulo))
-       
         self.render_template('campanya.html', {"campanyas" : campanyas,"id_modulo" : id_modulo})
 
         
