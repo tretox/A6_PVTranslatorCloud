@@ -22,8 +22,8 @@ app = webapp2.WSGIApplication([
         ('/calendar', showCalendar),
         
         ('/campanyas/([\d]+)', ShowCampanyas),
-        ('/campanyas/new/([\d]*)', NewCampaign),           
-        ('/campanyas/edit/([\d]+);(\d+)', EditCampaign),    
-        ('/campanyas/delete/(\d+);(\d+)', DeleteCampanya),  
+        ('/campanyas/new/([\d]+)', NewCampaign),           
+        ('/campanyas/edit/([\d]+)', EditCampaign),    
+        ('/campanyas/delete/(\d+)', DeleteCampanya),  
         ],
         debug=True)

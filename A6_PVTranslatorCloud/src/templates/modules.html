@@ -29,28 +29,28 @@
 			  			</tr>
 		  			</thead>
 		  			<tbody>
-		  			{% for module in modules %}
-			  			<tr>
-			  				 <td class="text-center align-middle"> <a type="link" class="text-secundary" href="/campanyas/{{module.key().id()}}"> Campañas </a>  <td>
-					  		 <td class="text-center align-middle">{{ module.name }}</td>
-					  		 <td class="text-center align-middle d-none d-md-table-cell">{{ module.alpha }}</td>
-					  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.beta }}</td>
-					  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.kappa }}</td>
-					  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.gamma }}</td>
-					  	     {% if admin %}
-						  	     <td class="text-center align-middle"> 
-		                          	<a type="button" class="btn btn-secondary rounded" href="/module/edit/{{ module.key().id() }}">
-		                             	<span class="material-icons align-middle">edit</span>
-		                                 <span class="d-none d-md-inline">Editar</span>
-		                            </a>
-		                            <a type="button" class="btn btn-danger rounded" href="/module/delete/{{ module.key().id() }}">
-		                            		<span class="material-icons align-middle">remove</span>
-		                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
-		                            </a>
-		                         </td>
-	                         {% endif %}   
-					  	     
-			  			</tr>
+			  			{% for module in modules %}
+				  			<tr>
+				  				 <td class="text-center align-middle"> <a type="link" class="text-secundary" href="/campanyas/{{module.key().id()}}"> Campañas </a>  <td>
+						  		 <td class="text-center align-middle">{{ module.name }}</td>
+						  		 <td class="text-center align-middle d-none d-md-table-cell">{{ module.alpha }}</td>
+						  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.beta }}</td>
+						  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.kappa }}</td>
+						  	     <td class="text-center align-middle d-none d-md-table-cell">{{ module.gamma }}</td>
+						  	     {% if admin %}
+							  	     <td class="text-center align-middle"> 
+			                          	<a type="button" class="btn btn-secondary rounded" href="/module/edit/{{ module.key().id() }}">
+			                             	<span class="material-icons align-middle">edit</span>
+			                                 <span class="d-none d-md-inline">Editar</span>
+			                            </a>
+			                            <a type="button" class="btn btn-danger rounded" href="/module/delete/{{ module.key().id() }}">
+			                            		<span class="material-icons align-middle">remove</span>
+			                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
+			                            </a>
+			                         </td>
+		                         {% endif %}   
+						  	     
+				  			</tr>
 		  		   {% endfor %}
 		  		   </tbody>
 		  		   
@@ -63,7 +63,7 @@
 						<span class="d-none d-md-inline-block align-middle">Entrar</span>
 					</a>
 				{% else %}
-					<a type="button" class="btn btn-success rounded" href="/logout">
+					<a type="button" class="btn btn-danger rounded" href="/logout">
 						<span class="material-icons align-middle"> exit_to_app </span> 
 						<span class="d-none d-md-inline-block align-middle">Salir</span>
 					</a>

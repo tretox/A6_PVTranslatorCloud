@@ -15,10 +15,8 @@ from models import Modules
 
 class ShowModules(BaseHandler):
     def get(self):
-        user = users.get_current_user()
-        admin = users.is_current_user_admin()
         modules = Modules.all()
-        self.render_template('modules.html', {"modules": modules, "user":user, "admin":admin})
+        self.render_template('modules.html', {"modules": modules, "user" : users.get_current_user(), "admin" : users.is_current_user_admin()})
          
             
 class LogIn(BaseHandler):

@@ -6,64 +6,65 @@
 	</div>
 	
 	<div class="container pb-3">
-		<form>
-			<div class="table-responsive no-more-than-60p">
-				<table class="table" 
-					   columnClasses="align-middle,
-	                                  align-middle,
-	                                  align-middle 
-	                                  d-none d-md-table-cell,
-	                                  align-middle d-none d-md-table-cell,
-	                                  align-middle  d-none d-md-table-cell,
-	                                  align-middle d-none d-md-table-cell"
-	                   headerClass="text-center"
-	                   rowClasses="text-center" id="tabla">
-	                   
-	            		<tr>
-					    <th>Nombre</th>
-					    <th>Modulo</th> 
-					    <th>Fecha</th>
-					    <th>Editar</th>
-					    <th>Borrar</th>
-		  			</tr>
-		  			{% for campanya in campanyas %}
-		  			<tr>
-				  		 <td>{{ campanya.name }}</td>
-				  		 <td>{{ campanya.modulo }}</td>
-				  	     <td>{{ campanya.fecha }}</td>
-				  	     <td><a type="button" class="btn btn-secondary rounded" href="/campanyas/edit/{{ campanya.key().id() }};{{campanya.modulo}}">
-	                             	<span class="material-icons align-middle">edit</span>
-	                                 <span class="d-none d-md-inline">Editar</span>
-	                            </a></td>
-	                     <td>
-	                     	 <a type="button" class="btn btn-danger rounded" href="/campanyas/delete/{{ campanya.key().id() }};{{campanya.modulo}}">
-	                            		<span class="material-icons align-middle">remove</span>
-	                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
-	                            </a>
-	                     
-	                     </td>
-				  	     
-		  			</tr>
-		  		   {% endfor %}
+
+				<table class="table" id="tabla">
+	                <thead>
+		            		<tr>
+		            			<th style="width: 15%" class="text-center align-middle"> <!-- Boton ver curvas --> </th>
+						    <th style="width: 30%" class="text-center align-middle">Nombre</th>
+						    <th style="width: 15%" class="text-center align-middle d-none d-md-table-cell">Modulo</th> 
+						    <th style="width: 15%" class="text-center align-middle d-none d-md-table-cell">Fecha</th>
+						    <th style="width: 15%" class="text-center align-middle"> <!-- Boton comentarios --></th>
+						    <th style="width: 10%" class="text-center align-middle"> <!-- Botones editar y borrar --></th>
+			  			</tr>
+			  		</thead>
+			  		<tbody>
+			  			{% for campanya in campanyas %}
+			  			<tr>
+			  				 <td style="width: 15%" class="text-center align-middle"> <a type="link" class="text-secundary" href="/campanyas/{{ campanya.modulo }}">Curvas</a> </td>
+					  		 <td style="width: 30%" class="text-center align-middle">{{ campanya.name }}</td>
+					  		 <td style="width: 15%" class="text-center align-middle d-none d-md-table-cell">{{ module.name }}</td>
+					  	     <td style="width: 15%" class="text-center align-middle d-none d-md-table-cell">{{ campanya.date }}</td>
+					  	     <td style="width: 15%" class="text-center align-middle">
+					  	     	<a type="button" class="btn btn-info rounded" href="/campanyas/{{ campanya.modulo }}">
+		                             	<span class="material-icons align-middle">comment</span>
+		                                 <span class="d-none d-md-inline">Foro</span>
+		                         </a>
+		                     </td>
+		                     
+			                 	<td style="width: 10%" class="text-center align-middle">
+			                     {% if admin %}
+			                    		<a type="button" class="btn btn-secondary rounded" href="/campanyas/edit/{{ campanya.key().id() }}">
+			                             	<span class="material-icons align-middle">edit</span>
+			                                 <span class="d-none d-md-inline">Editar</span>
+			                          </a>
+			                          <a type="button" class="btn btn-danger rounded" href="/campanyas/delete/{{ campanya.key().id() }}">
+			                            		<span class="material-icons align-middle">remove</span>
+			                            		<span class="d-none d-md-inline-block align-middle">Borrar</span>
+			                          </a>
+			                     {%endif%}
+			                     </td>
+			                     
+			  			</tr>
+			  		   {% endfor %}
+		  		   </tbody>
 	             </table>
 			</div>
 			<p>
-				<a type="link" class="btn btn-secondary" href="/">Atras</a>
-				<a type="link" class="btn btn-primary rounded" href="/campanyas/new/{{id_modulo}}">
-	             	<span class="material-icons align-middle"> add </span>
-	                 <span class="d-none d-md-inline-block align-middle">Nuevo</span>
-	            </a>
-	            <a type="link" class="btn btn-primary rounded" href="/calendar">
+				<a type="button" class="btn btn-secondary" href="/">Atras</a>
+				
+				{% if admin %}
+					<a type="button" class="btn btn-primary rounded" href="/campanyas/new/{{ module.key().id() }}">
+		             	<span class="material-icons align-middle"> add </span>
+		                 <span class="d-none d-md-inline-block align-middle">Nuevo</span>
+		            </a>
+	            {%endif%}
+	            
+	            <a type="button" class="btn btn-primary rounded" href="/calendar">
                  	<span class="material-icons align-middle">calendar_today</span>
                      <span class="d-none d-md-inline-block align-middle">Calendario</span>
                 </a>
              </p>
-		</form>
 		
 		
-			
-		
-		
-	</div>                        
-
 {% endblock content %}
