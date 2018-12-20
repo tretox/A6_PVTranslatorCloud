@@ -37,26 +37,33 @@ class DeleteCampanya(BaseHandler):
     
 class NewCampaign(BaseHandler):
 
-    def get(self, camp_id):
-        if not camp_id:             #no hay campanya seleccionada
-            self.render_template('newCampanya.html', {})
-        else:
-            id = int(camp_id)
-            campanya = db.get(db.Key.from_path('Campanyas', id))
-            self.render_template('newCampanya.html', {"campanya": campanya})
+    def get(self,id_modulo):
+        self.render_template('newCampanya.html', {"id_modulo" : id_modulo})
         
-        
-    def post(self, camp_id):
+    def post(self,id_modulo):
         campanya = None
-        if not camp_id:             #no hay campanya seleccionada
-            campanya = Campanyas(name=self.request.get('inputName'),
-                         modulo=int("3"),)
-        else:
-            id = int(camp_id)
-            campanya = db.get(db.Key.from_path('Campanyas', id))
-            campanya.name = self.request.get('inputName')
-            campanya.date = datetime.now()
+        campanya = Campanyas(name=self.request.get('inputName'),modulo=int(id_modulo),)
+        
+        campanya.put()
+        time.sleep(0.1) 
+        return webapp2.redirect('/campanyas/'+id_modulo)
+
+class EditCampaign(BaseHandler):
+
+    def get(self, camp_id, id_modulo):
+        id = int(camp_id)
+        campanya = db.get(db.Key.from_path('Campanyas', id))
+        self.render_template('newCampanya.html', {"campanya": campanya,"id_modulo" : id_modulo})
+        
+        
+    def post(self, camp_id, id_modulo):
+        campanya = None
+        id = int(camp_id)
+        campanya = db.get(db.Key.from_path('Campanyas', id))
+        campanya.name = self.request.get('inputName')
+        campanya.date = datetime.now()
 
         campanya.put()
         time.sleep(0.1) 
-        return webapp2.redirect('/')
+        return webapp2.redirect('/campanyas/'+id_modulo)
+
