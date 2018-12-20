@@ -9,15 +9,26 @@ import time
 
 from BaseHandler import BaseHandler
 from google.appengine.ext import db
-
+from google.appengine.api import users
 from models import Modules 
 
+
 class ShowModules(BaseHandler):
-    
     def get(self):
+        user = users.get_current_user()
+        admin = users.is_current_user_admin()
         modules = Modules.all()
-        self.render_template('modules.html', {"modules": modules})
-        
+        self.render_template('modules.html', {"modules": modules, "user":user, "admin":admin})
+         
+            
+class LogIn(BaseHandler):
+    def get(self):
+        self.redirect(users.create_login_url('/'))
+
+
+class LogOut(BaseHandler):
+    def get(self):
+        self.redirect(users.create_logout_url('/'))
         
         
 class showCalendar(BaseHandler):
