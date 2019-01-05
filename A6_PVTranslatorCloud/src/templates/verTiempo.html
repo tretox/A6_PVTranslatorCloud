@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container p-4">
+	<h2>Servicio meteorol&oacute;gico de {{ weatherCity }}</h2>
+</div>
+
+<div class="container pb-3">
+	<table class="table" id="tabla">
+		<thead>
+			<tr>
+				<th style="width: 15%" class="text-center align-middle">
+					Descripci&oacute;n del tiempo</th>
+				<th style="width: 15%" class="text-center align-middle">
+					Temperatura</th>
+				<th style="width: 15%" class="text-center align-middle">Velocidad
+					del viento</th>
+				<th style="width: 15%" class="text-center align-middle">Direcci&oacute;n
+					del viento</th>
+				<th style="width: 15%" class="text-center align-middle">
+					Porcentaje de nubes</th>
+				<th style="width: 15%" class="text-center align-middle">
+					Humedad</th>
+				<th style="width: 15%" class="text-center align-middle">Fecha</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for meteo in ListaTiempo %}
+			<tr>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.tiempo }}
+				</td>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.temperatura }} &deg;C
+				</td>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.velocidadViento }} m/s
+				</td>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.direccionViento }} &deg;
+				</td>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.nubesActual }} %
+				</td>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.humedad }} %
+				</td>
+				<td style="width: 15%"
+					class="text-center align-middle">
+					{{ meteo.fecha }}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<p>
+	
+		{% if renderizarBack %}
+		<a type="button" class="btn btn-primary rounded" href="/meteoBack" > 
+			<span class="material-icons align-middle">
+	        	arrow_back
+	        </span> 
+	        <span class="d-none d-md-inline-block align-middle">
+	        	Fechas anteriores
+	        </span>
+        </a>
+        {% endif %}
+        
+        {% if renderizarNext %}
+		<a type="button" class="btn btn-primary rounded" href="/meteoNext"> 
+			<span class="material-icons align-middle">
+	            arrow_forward
+	        </span> 
+	        <span class="d-none d-md-inline-block align-middle">
+	        	Fechas posteriores
+	        </span>
+	    </a>
+	    {% endif %}
+	    
+		<a type="button" style="float: right;"class="btn btn-secondary" href="/">Atras</a>
+
+	</p>
+</div>
+{% endblock content %}
