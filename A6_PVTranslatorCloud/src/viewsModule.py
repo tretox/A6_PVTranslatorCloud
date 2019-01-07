@@ -38,9 +38,11 @@ class showCalendar(BaseHandler):
 class DeleteModulo(BaseHandler): 
        
     def get(self, mod_id):
-        id = int(mod_id)
-        modulo = db.get(db.Key.from_path('Modules', id))
-        db.delete(modulo)
+        if users.is_current_user_admin():
+            id = int(mod_id)
+            modulo = db.get(db.Key.from_path('Modules', id))
+            db.delete(modulo)
+            
         time.sleep(0.1)
         return webapp2.redirect('/')
         
@@ -48,9 +50,12 @@ class DeleteModulo(BaseHandler):
 class EditModule(BaseHandler):
     
     def get(self, mod_id):
-        id = int(mod_id)
-        modulo = db.get(db.Key.from_path('Modules', id))
-        self.render_template('newEditModule.html', {"modulo": modulo})
+        if users.is_current_user_admin():
+            id = int(mod_id)
+            modulo = db.get(db.Key.from_path('Modules', id))
+            self.render_template('newEditModule.html', {"modulo": modulo})
+        else:
+            return webapp2.redirect('/')
         
     def post(self, mod_id):
         id = int(mod_id)
@@ -68,7 +73,10 @@ class EditModule(BaseHandler):
 
 class NewModule(BaseHandler):
     def get(self):
-        self.render_template('newEditModule.html', {})
+        if users.is_current_user_admin():
+            self.render_template('newEditModule.html', {})
+        else:
+            return webapp2.redirect('/')
         
     def post(self):
         module = Modules(name=self.request.get('inputName'),
