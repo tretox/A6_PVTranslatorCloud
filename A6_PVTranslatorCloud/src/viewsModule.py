@@ -33,10 +33,10 @@ class showCalendar(BaseHandler):
     
     def get(self):
         self.render_template('calendar.html', {})
+
         
-        
-class DeleteModulo(BaseHandler):
-    
+class DeleteModulo(BaseHandler): 
+       
     def get(self, mod_id):
         id = int(mod_id)
         modulo = db.get(db.Key.from_path('Modules', id))
@@ -46,7 +46,7 @@ class DeleteModulo(BaseHandler):
         
         
 class EditModule(BaseHandler):
-
+    
     def get(self, mod_id):
         id = int(mod_id)
         modulo = db.get(db.Key.from_path('Modules', id))

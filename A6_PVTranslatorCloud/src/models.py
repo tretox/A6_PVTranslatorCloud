@@ -19,6 +19,17 @@ class Campanyas(db.Model):
     modulo = db.IntegerProperty()
     date = db.DateTimeProperty(auto_now_add=True)
     
+    
+class Meteo:
+    def __init__(self, tiempo, temperatura, humedad, velocidadViento, direccionViento, nubesActual, fecha):
+        self.tiempo = tiempo
+        self.temperatura = temperatura
+        self.humedad = humedad
+        self.velocidadViento = velocidadViento
+        self.direccionViento = direccionViento
+        self.nubesActual = nubesActual
+        self.fecha = fecha
+    
 """    
 class Coments(db.model):
     text = db.StringProperty()
