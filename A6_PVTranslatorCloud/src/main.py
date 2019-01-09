@@ -21,9 +21,9 @@ app = webapp2.WSGIApplication([
         ('/module/delete/([\d]+)', DeleteModulo),
         
         ('/calendar', showCalendar),
-        ('/verTiempo/([\d]+)', showVerTiempo),
-        ('/meteoBack/([\d]+)', meteoBack),
-        ('/meteoNext/([\d]+)', meteoNext),
+        ('/verTiempo', showVerTiempo),
+        ('/meteoBack', meteoBack),
+        ('/meteoNext', meteoNext),
         
         ('/campanyas/([\d]+)', ShowCampanyas),
         ('/campanyas/new/([\d]+)', NewCampaign),           
