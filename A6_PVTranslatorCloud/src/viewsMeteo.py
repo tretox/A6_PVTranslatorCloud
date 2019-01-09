@@ -20,7 +20,18 @@ class showVerTiempo(BaseHandler):
     def get(self, posicion):  
         global listaMeteo
         pos=int(posicion)
-        listaMeteo = []
+        listaMeteo = self.getListaActualizada()
+        listaMeteoDiv10 = self.crearListaMeteoDiv10(pos)
+        self.render_template('verTiempo.html', { 
+            "ListaTiempo" : listaMeteoDiv10, 
+            "renderizarNext" : self.renderizarNext(pos), 
+            "renderizarBack":self.renderizarBack(pos), 
+            "weatherCity":weatherCity,
+            "posicion":pos
+            })
+        
+    def getListaActualizada(self):
+        lista = []
         req = urllib2.Request(BASE_URI)
         opener = urllib2.build_opener()
         respuesta = opener.open(req)
@@ -55,16 +66,8 @@ class showVerTiempo(BaseHandler):
             fecha = aux["dt_txt"]
                     
             m = Meteo(tiempo, temperatura, humedad, velocidadViento, direccionViento, nubesActual, fecha)
-            listaMeteo.append(m)
-
-        listaMeteoDiv10 = self.crearListaMeteoDiv10(pos)
-        self.render_template('verTiempo.html', { 
-            "ListaTiempo" : listaMeteoDiv10, 
-            "renderizarNext" : self.renderizarNext(pos), 
-            "renderizarBack":self.renderizarBack(pos), 
-            "weatherCity":weatherCity,
-            "posicion":pos
-            })
+            lista.append(m)
+        return lista
         
     def crearListaMeteoDiv10(self, posicion) :
         pos=int(posicion)
