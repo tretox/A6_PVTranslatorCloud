@@ -20,42 +20,42 @@ class showVerTiempo(BaseHandler):
     def get(self, posicion):  
         global listaMeteo
         pos=int(posicion)
-        if(listaMeteo==[]):
-            req = urllib2.Request(BASE_URI)
-            opener = urllib2.build_opener()
-            respuesta = opener.open(req)
-            jsonRespuesta = json.loads(respuesta.read())
-            ja = jsonRespuesta["list"]
-            for i in xrange(0,len(ja)):
-                aux = ja[i]
+        listaMeteo = []
+        req = urllib2.Request(BASE_URI)
+        opener = urllib2.build_opener()
+        respuesta = opener.open(req)
+        jsonRespuesta = json.loads(respuesta.read())
+        ja = jsonRespuesta["list"]
+        for i in xrange(0,len(ja)):
+            aux = ja[i]
     
-                #//Tiempo actual//
-                jaAux = aux["weather"]
-                aux2 = jaAux[0]
-                tiempo = aux2["description"]
+            #//Tiempo actual//
+            jaAux = aux["weather"]
+            aux2 = jaAux[0]
+            tiempo = aux2["description"]
                     
-                #//TemperaturaActual//
-                main = aux["main"]
-                temperatura = main["temp"]
-                #//HumedadActual//
-                humedad = main["humidity"]
+            #//TemperaturaActual//
+            main = aux["main"]
+            temperatura = main["temp"]
+            #//HumedadActual//
+            humedad = main["humidity"]
                     
-                #//VelocidadVientoActual//
-                wind = aux["wind"]
-                velocidadViento = wind["speed"]
+            #//VelocidadVientoActual//
+            wind = aux["wind"]
+            velocidadViento = wind["speed"]
     
-                #//DireccionVientoActual//
-                direccionViento = wind["deg"]
+            #//DireccionVientoActual//
+            direccionViento = wind["deg"]
                     
-                #//NubesActual//
-                clouds = aux["clouds"]
-                nubesActual = clouds["all"]
+            #//NubesActual//
+            clouds = aux["clouds"]
+            nubesActual = clouds["all"]
                     
-                #//FechaActual//
-                fecha = aux["dt_txt"]
+            #//FechaActual//
+            fecha = aux["dt_txt"]
                     
-                m = Meteo(tiempo, temperatura, humedad, velocidadViento, direccionViento, nubesActual, fecha)
-                listaMeteo.append(m)
+            m = Meteo(tiempo, temperatura, humedad, velocidadViento, direccionViento, nubesActual, fecha)
+            listaMeteo.append(m)
 
         listaMeteoDiv10 = self.crearListaMeteoDiv10(pos)
         self.render_template('verTiempo.html', { 
