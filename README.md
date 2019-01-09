@@ -1,8 +1,8 @@
 ### Cambios servicio meteorológico v2:
 
-- Se han quitado todas las variables globales excepto listaMeteo, apiKey, weatherCity, units y BASE_URI, de estas globales, apiKey, weatherCity, units y BASE_URI se leen para saber que preguntar al servicio rest, pero solo se puede modificar desde el código. Solo listaMeteo es modificada con cada actualización de la página:
+- Se han quitado todas las variables globales excepto listaMeteo, apiKey, weatherCity, units y BASE_URI. De estas globales, apiKey, weatherCity, units y BASE_URI se leen para saber que preguntar al servicio rest, pero solo se puede modificar desde el código. Solo listaMeteo es modificada con cada actualización de la página:
 
-        - Se puede modificar de varias formas, cada vez que se entra a la página o 
+        - listaMeteo se puede modificar de varias formas, cada vez que se entra a la página o 
           se accede a la posicion 0 de la página, o que siempre se vaya actualizando 
           cada vez que entre actualice la página al entrar a cada posición. En este 
           caso he usado la ultima opción, pero no estoy seguro de si habra algún error 
