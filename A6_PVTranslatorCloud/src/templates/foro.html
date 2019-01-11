@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+	<div class="container p-4">
+        <h1>FORO</h1>
+        <h4>Modulo {{ module }}, campaña {{ campain }}</h4>
+	</div>
+
+	<div class="container pb-3">
+
+            {% if user != None %}
+            <form class="pb-2" method="post" action="/foro/{{ module }}/{{ campain }}/new">
+                <div class="form-group">
+                    <label for="comment">Introduce un comentario ... </label>
+                    <textarea class="form-control" id="comment" name="comment" required rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Comentar</button>
+                </div>
+            </form>
+            {% endif %}
+
+            {% for comment in comments %}
+
+            <div class="card" comment="{{ comment.createDate }} - {{ comment.userMail }}">
+              <div class="card-body">
+                  <div style="float: left; background-image: url('/static/images/avatar.png');
+                              width: 100px; height: 100px; display: inline-block; background-size: 100px; ">
+
+                  </div>
+                  <div style="padding-left: 120px;">
+                      <strong class="card-title">{{ comment.userName }}</strong>
+
+                      <div class="card-text">
+                          <textarea class="text-editing d-none" style="width: 100%;" name="text-edit" cols="3">{{ comment.text }}</textarea>
+                          <p class="text-no-editted">
+                          {{ comment.text }}
+                          </p>
+                      </div>
+
+                      <div class="card-text">
+                          <small class="comment-date text-muted"> Last updated on {{ comment.updateDate.strftime("%Y-%m-%d %H:%M:%S") }} </small>
+                      </div>
+                      <div class="card-text">
+
+                          {% if admin or user == comment.userMail %}
+
+                          <button class="btn-edit btn btn-secondary" onclick="switch_to_edit('{{ comment.createDate }} - {{ comment.userMail }}')">Editar</button>
+                          <button class="btn-confirmar btn btn-primary d-none" onclick="edit('{{ module }}', '{{ campain }}', '{{ comment.createDate }}', '{{ comment.userMail }}')" >Confirmar</button>
+                          <button class="btn-cancelar btn btn-secondary d-none" onclick="switch_to_edit('{{ comment.createDate }} - {{ comment.userMail }}')">Cancelar</button>
+                          <button class="btn-borrar btn btn-danger" onclick="remove('{{ module }}', '{{ campain }}', '{{ comment.createDate }}', '{{ comment.userMail }}')">Borrar</button>
+
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+    </div>
+
+    <script type="text/javascript">
+
+        function switch_to_edit(id) {
+
+            var cardComment = $(".card[comment='" + id + "']");
+
+            var a = cardComment.attr("edit");
+
+            if (a === undefined || a === "false") {
+                cardComment.attr('edit', 'true');
+                cardComment.find('.btn-confirmar').removeClass('d-none');
+                cardComment.find('.btn-cancelar').removeClass('d-none');
+                cardComment.find('.btn-edit').addClass('d-none');
+                cardComment.find('.text-editing').removeClass('d-none');
+                cardComment.find('.text-no-editted').addClass('d-none');
+            }
+            else {
+                cardComment.attr('edit', 'false');
+                cardComment.find('.btn-confirmar').addClass('d-none');
+                cardComment.find('.btn-cancelar').addClass('d-none');
+                cardComment.find('.btn-edit').removeClass('d-none');
+                cardComment.find('.text-editing').addClass('d-none');
+                cardComment.find('.text-editing').html(cardComment.find('.text-no-editted').text().trim());
+                cardComment.find('.text-no-editted').removeClass('d-none');
+            }
+        }
+
+        function edit(module,campain, date, user) {
+            var id = date + " - " + user;
+            var cardComment = $(".card[comment='" + id + "']");
+            var text = cardComment.find('.text-editing').val().trim();
+
+            $.post("/foro/"+module+"/"+campain+"/edit",
+                {
+                    "date" : date,
+                    "user" : user,
+                    "text" : text
+                },
+                function (data,status) {
+                    if (status === "success") {
+                        cardComment.find('.comment-date').html("Last updated on " + (new Date()).toLocaleString());
+                        cardComment.find('.text-no-editted').html(text);
+                        switch_to_edit(id);
+                    }
+                }
+            );
+        }
+
+        function remove(module, campain, date, user) {
+            var id = date + " - " + user;
+
+            $.post("/foro/"+module+"/"+campain+"/remove",
+                {
+                    "date" : date,
+                    "user" : user
+                },
+                function (data,status) {
+
+                    if (status === "success") {
+                        $(".card[comment='"+id+"']").remove();
+                    }
+                }
+            );
+        }
+
+    </script>
+
+{% endblock content %}
