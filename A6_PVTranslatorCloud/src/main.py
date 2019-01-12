@@ -8,6 +8,7 @@ Created on Dec 6, 2018
 from viewsCampanya import NewCampaign, ShowCampanyas, DeleteCampanya, EditCampaign
 from viewsModule import ShowModules, LogIn, LogOut, NewModule, EditModule, showCalendar, DeleteModulo
 from viewsMeteo import showVerTiempo, meteoBack, meteoNext
+from viewsForo import ViewComments, NewComments, RemoveComments, EditComments
 
 import webapp2
 
@@ -28,6 +29,11 @@ app = webapp2.WSGIApplication([
         ('/campanyas/([\d]+)', ShowCampanyas),
         ('/campanyas/new/([\d]+)', NewCampaign),           
         ('/campanyas/edit/([\d]+)', EditCampaign),    
-        ('/campanyas/delete/(\d+)', DeleteCampanya),  
+        ('/campanyas/delete/(\d+)', DeleteCampanya),
+
+        ('/foro/(\d+)/(\w+)', ViewComments),
+        ('/foro/(\d+)/(\w+)/new', NewComments),
+        ('/foro/(\d+)/(\w+)/remove', RemoveComments),
+        ('/foro/(\d+)/(\w+)/edit', EditComments)
         ],
         debug=True)

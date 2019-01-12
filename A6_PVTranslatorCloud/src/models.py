@@ -5,6 +5,7 @@ Created on Dec 6, 2018
 '''
 
 from google.appengine.ext import db
+from datetime import datetime
 
 class Modules(db.Model):
     name = db.StringProperty()
@@ -30,11 +31,12 @@ class Meteo:
         self.nubesActual = nubesActual
         self.fecha = fecha
     
-"""    
-class Coments(db.model):
-    text = db.StringProperty()
-    date = db.DateTimeProperty(auto_now_add=True)
-    userName = db.StringProperty()
-    userMail = db.StringProperty() #String o del tipo que la clase User de google devuelva el correo
 
-"""   
+class Comments(db.Model):
+    text = db.StringProperty()
+    createDate = db.DateTimeProperty(auto_now_add=True)
+    updateDate = db.DateTimeProperty(auto_now_add=True)
+    userName = db.StringProperty()
+    userMail = db.StringProperty()
+    campanya = db.StringProperty()
+    module = db.StringProperty()
