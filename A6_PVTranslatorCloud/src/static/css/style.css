@@ -16,7 +16,7 @@ a, button {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-p,td, input {
+p,td,input,pre {
     font-family: 'Fira Sans', sans-serif;
 }
 
