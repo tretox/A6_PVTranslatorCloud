@@ -17,6 +17,7 @@ class ViewComments(BaseHandler):
             "campain" : campain_id,
             "comments" : comments,
             "user" : users.get_current_user().nickname() if users.get_current_user() != None else None,
+            "user_id" : users.get_current_user().user_id(),
             "admin" : users.is_current_user_admin()}
         )
 
@@ -29,7 +30,7 @@ class NewComments(ViewComments):
         comment = Comments(
             text=text.strip(),
             userMail=user.email(),
-            userName=user.nickname(),
+            userId=user.user_id(),
             campanya=campain_id,
             module=module_id
         )

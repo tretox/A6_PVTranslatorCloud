@@ -33,10 +33,10 @@ class Meteo:
     
 
 class Comments(db.Model):
-    text = db.StringProperty()
+    text = db.StringProperty(multiline=True)
     createDate = db.DateTimeProperty(auto_now_add=True)
     updateDate = db.DateTimeProperty(auto_now_add=True)
-    userName = db.StringProperty()
+    userId = db.StringProperty()
     userMail = db.StringProperty()
     campanya = db.StringProperty()
     module = db.StringProperty()

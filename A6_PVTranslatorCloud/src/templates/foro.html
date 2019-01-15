@@ -7,7 +7,7 @@
         <h1>FORO</h1>
         <h4>Modulo {{ module }}, campaña {{ campain }}</h4>
 	</div>
-
+    <p>id : {{ user_id }}</p>
 	<div class="container pb-3">
 
             {% if user != None %}
@@ -35,9 +35,7 @@
 
                       <div class="card-text">
                           <textarea class="text-editing d-none" style="width: 100%;" name="text-edit" cols="3">{{ comment.text }}</textarea>
-                          <p class="text-no-editted">
-                          {{ comment.text }}
-                          </p>
+                          <pre class="text-no-editted">{{ comment.text }}</pre>
                       </div>
 
                       <div class="card-text">
@@ -45,7 +43,7 @@
                       </div>
                       <div class="card-text">
 
-                          {% if admin or user == comment.userMail %}
+                          {% if admin or user_id == comment.userId %}
 
                           <button class="btn-edit btn btn-secondary" onclick="switch_to_edit('{{ comment.createDate }} - {{ comment.userMail }}')">Editar</button>
                           <button class="btn-confirmar btn btn-primary d-none" onclick="edit('{{ module }}', '{{ campain }}', '{{ comment.createDate }}', '{{ comment.userMail }}')" >Confirmar</button>
