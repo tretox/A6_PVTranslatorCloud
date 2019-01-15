@@ -5,7 +5,7 @@ Created on Dec 6, 2018
 '''
 
 import webapp2
-import time
+#import time
 
 from BaseHandler import BaseHandler
 from google.appengine.ext import db
@@ -43,7 +43,7 @@ class DeleteModulo(BaseHandler):
             modulo = db.get(db.Key.from_path('Modules', id))
             db.delete(modulo)
             
-        time.sleep(0.1)
+        #time.sleep(0.1)
         return webapp2.redirect('/')
         
         
@@ -67,7 +67,7 @@ class EditModule(BaseHandler):
         module.kappa = int(self.request.get('inputKappa'))
 
         module.put()
-        time.sleep(0.1) #Buscar otra sol.
+        #time.sleep(0.1)
         return webapp2.redirect('/')
 
 
@@ -85,5 +85,5 @@ class NewModule(BaseHandler):
                          gamma=int(self.request.get('inputGamma')),
                          kappa=int(self.request.get('inputKappa')),)
         module.put()
-        time.sleep(0.1) #Buscar otra sol.
+        #time.sleep(0.1) 
         return webapp2.redirect('/')

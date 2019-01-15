@@ -5,7 +5,7 @@ Created on Dec 11, 2018
 '''
 
 import webapp2
-import time
+#import time
 
 from BaseHandler import BaseHandler
 from google.appengine.ext import db
@@ -35,7 +35,7 @@ class DeleteCampanya(BaseHandler):
             id_mod = str(campanya.modulo)
             db.delete(campanya)
         
-        time.sleep(0.1)
+        #time.sleep(0.1)
         return webapp2.redirect('/campanyas/'+id_mod)
        
         
@@ -53,7 +53,7 @@ class NewCampaign(BaseHandler):
         campanya = Campanyas(name=self.request.get('inputName'),modulo=int(id_modulo),)
         
         campanya.put()
-        time.sleep(0.1) 
+        #time.sleep(0.1) 
         
         return webapp2.redirect('/campanyas/'+id_modulo)
 
@@ -74,6 +74,6 @@ class EditCampaign(BaseHandler):
         campanya.date = datetime.now()
 
         campanya.put()
-        time.sleep(0.1) 
+        #time.sleep(0.1) 
         return webapp2.redirect('/campanyas/'+str(campanya.modulo))
 
