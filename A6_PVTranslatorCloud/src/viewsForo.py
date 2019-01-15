@@ -6,14 +6,17 @@ from datetime import datetime
 from google.appengine.api import users
 from google.appengine.ext import db
 from models import Comments
+from models import Modules
 from BaseHandler import BaseHandler
 
 class ViewComments(BaseHandler):
 
     def get(self,module_id,campain_id):
         comments = Comments.all().filter('module = ', module_id).filter('campanya = ', campain_id).order('-createDate')
+        modulo = Modules.get(db.Key.from_path('Modules', int(module_id)))
         self.render_template("foro.html", {
             "module" : module_id,
+            "moduleName": modulo.name,
             "campain" : campain_id,
             "comments" : comments,
             "user" : users.get_current_user().nickname() if users.get_current_user() != None else None,
@@ -36,6 +39,7 @@ class NewComments(ViewComments):
         )
 
         comment.put()
+        time.sleep(0.1)
         return webapp2.redirect("/foro/"+str(module_id)+"/"+str(campain_id))
 
 class RemoveComments(NewComments):
@@ -55,6 +59,7 @@ class RemoveComments(NewComments):
         comment = q.fetch(1)
         db.delete(comment)
 
+        time.sleep(0.1)
         return webapp2.redirect("/foro/"+str(module_id)+"/"+str(campain_id))
 
 class EditComments(NewComments):
@@ -77,15 +82,5 @@ class EditComments(NewComments):
         comment[0].updateDate = datetime.now()
         db.put(comment)
 
+        time.sleep(0.1)
         return
-
-"""
-class Comments(db.Model):
-    text = db.StringProperty()
-    createDate = db.DateTimeProperty(auto_now_add=True)
-    updateDate = db.DateTimeProperty(auto_now_add=True)
-    userName = db.StringProperty()
-    userMail = db.StringProperty()
-    campanya = db.StringProperty()
-    module = db.StringProperty()
-"""
