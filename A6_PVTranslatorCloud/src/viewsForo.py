@@ -20,7 +20,7 @@ class ViewComments(BaseHandler):
             "campain" : campain_id,
             "comments" : comments,
             "user" : users.get_current_user().nickname() if users.get_current_user() != None else None,
-            "user_id" : users.get_current_user().user_id(),
+            "user_id" : users.get_current_user().user_id() if users.get_current_user() != None else None,
             "admin" : users.is_current_user_admin()}
         )
 
